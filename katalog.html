@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelan-Pelan Tapi Pastry</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'petrona': ['Petrona', 'serif'],
+                        'sans': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wave-top {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23543a32' fill-opacity='1' d='M0,64L30,69.3C60,75,120,85,180,80C240,75,300,53,360,53.3C420,53,480,75,540,90.7C600,107,660,117,720,106.7C780,96,840,64,900,58.7C960,53,1020,75,1080,85.3C1140,96,1200,96,1260,85.3C1320,75,1380,53,1410,42.7L1440,32L1440,120L1410,120C1380,120,1320,120,1260,120C1200,120,1140,120,1080,120C1020,120,960,120,900,120C840,120,780,120,720,120C660,120,600,120,540,120C480,120,420,120,360,120C300,120,240,120,180,120C120,120,60,120,30,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F6F1EB] font-sans">
+
+    <nav
+        class="sticky top-0 z-50 bg-[#8C5A3C] shadow-md shadow-black/50 text-white px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <img src="logo.png" alt="Croissant Logo" class="w-12 h-12 object-contain drop-shadow-md">
+
+            <div class="font-poppins font-semibold text-sm tracking-wide">
+                PELAN-PELAN TAPI <i class="font-petrona italic font-bold text-[#FFF8F0]">Pastry</i>
+            </div>
+        </div>
+
+
+        <div class="flex items-center space-x-6 text-sm font-medium">
+            <a href="#beranda"
+                class="hover:text-[#FFF8F0] pb-1 transition-all duration-200 opacity-80 hover:opacity-100">Beranda</a>
+            <a href="#katalog"
+                class="text-[#FFF8F0] border-b-2 border-[#FFF8F0] pb-1 transition-all duration-150">Katalog</a>
+            <a href="#manajemen"
+                class="hover:text-[#FFF8F0] pb-1 transition-all duration-200 opacity-80 hover:opacity-100">Manajemen</a>
+        </div>
+
+        <div
+            class="w-9 h-9 rounded-full bg-[#FFF8F0] flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
+            👤</div>
+    </nav>
+
+    <section class="relative w-full shadow-md shadow-black/50 min-h-[500px] bg-[#3D251E] overflow-visible">
+        <div class="absolute top-0 right-0 w-2/3 h-full pointer-events-none">
+            <img src="Group108.png" alt="Drip Background" class="w-5/6 object-contain object-right-top ml-auto">
+        </div>
+
+        <div class="container mx-auto px-12 pt-24 pb-32 relative z-10">
+            <div class="max-w-xl ml-8 md:ml-16">
+                <h1 class="text-white font-bold text-4xl md:text-5xl font-petrona italic leading-tight mb-4">
+                    Ketika Rasa Manis<br>Meleleh Menyentuh Hati
+                </h1>
+
+                <p class="text-gray-200 text-md leading-relaxed mb-10 max-w-md">
+                    Setiap potongan menyajikan kesegaran stroberi <br>alami yang berpadu dengan tekstur kue yang lembut. Mahakarya rasa yang siap memanjakan hari Anda.
+                </p>
+
+                <a href="/detail-produk"
+                    class="inline-block px-12 py-4 bg-[#8C5A3C] text-white text-xl font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:bg-[#a06e4e] hover:-translate-y-1 active:scale-95">
+                    Detail
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full translate-y-[80%] z-10">
+            <svg viewBox="0 0 1440 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                <path
+                    d="M0 0H1440V40 C1440 40 1410 130 1380 130 C1350 130 1320 40 1290 40 C1260 40 1230 150 1200 150 C1170 150 1140 40 1110 40 C1080 40 1050 110 1020 110 C990 110 960 40 930 40 C900 40 870 140 840 140 C810 140 780 40 750 40 C720 40 690 120 660 120 C630 120 600 40 570 40 C540 40 510 150 480 150 C450 150 420 40 390 40 C360 40 330 100 300 100 C270 100 240 40 210 40 C180 40 150 140 120 140 C90 140 60 40 30 40 C10 40 0 80 0 80 V0Z"
+                    fill="#3D251E" />
+            </svg>
+        </div>
+    </section>
+
+    <div class="h-40"></div>
+
+    <div class="wave-top"></div>
+
+    <section class="max-w-7xl mx-auto px-6 py-8">
+
+        <div class="grid grid-cols-3 items-center mb-12 relative w-full">
+
+            <div class="justify-self-start relative inline-block text-left">
+                <button id="dropdownBtn"
+                    class="border-2 border-[#8C5A3C] rounded-2xl px-6 py-2.5 bg-transparent text-sm font-medium text-[#4B2F2B] flex items-center justify-between gap-4 min-w-[180px] shadow-sm hover:bg-[#FFF8F0] transition-all duration-200 focus:outline-none">
+                    <span id="selectedLabel">Semua Produk</span>
+                    <svg class="w-4 h-4 text-[#8C5A3C] transition-transform duration-200" id="dropdownArrow" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div id="dropdownMenu"
+                    class="hidden absolute left-0 mt-3 w-64 bg-[#FFF8F0] rounded-3xl shadow-xl border border-[#E5D3C0] p-5 z-50 transition-all duration-200">
+                    <h4 class="text-base font-bold text-[#4B2F2B] font-petrona tracking-wide">Menu Pilihan</h4>
+                    <p class="text-xs italic text-gray-400 mb-3">Kategori</p>
+
+                    <ul class="space-y-1">
+                        <li class="dropdown-item flex items-center justify-between bg-[#FFF8F0] text-[#4B2F2B] font-semibold px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all"
+                            data-value="Semua Produk">
+                            <span>Semua Produk</span>
+                            <span class="checkmark text-xs font-bold text-[#8C5A3C]">✓</span>
+                        </li>
+                        <li class="dropdown-item flex items-center justify-between text-gray-600 hover:bg-[#FFF8F0] hover:text-[#4B2F2B] px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all"
+                            data-value="Cake">
+                            <span>Cake</span>
+                            <span class="checkmark text-xs font-bold text-[#8C5A3C] hidden">✓</span>
+                        </li>
+                        <li class="dropdown-item flex items-center justify-between text-gray-600 hover:bg-[#FFF8F0] hover:text-[#4B2F2B] px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all"
+                            data-value="Pastry">
+                            <span>Pastry</span>
+                            <span class="checkmark text-xs font-bold text-[#8C5A3C] hidden">✓</span>
+                        </li>
+                        <li class="dropdown-item flex items-center justify-between text-gray-600 hover:bg-[#FFF8F0] hover:text-[#4B2F2B] px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all"
+                            data-value="Dessert">
+                            <span>Dessert</span>
+                            <span class="checkmark text-xs font-bold text-[#8C5A3C] hidden">✓</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl text-[#4B2F2B] font-petrona font-bold tracking-wide drop-shadow-[0_2px_3px_rgba(0,0,0,0.30)]">
+                    Jowo Borot
+                </h2>
+            </div>
+
+            <div></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <script>
+                for (let i = 0; i < 15; i++) {
+                    document.write(`
+                        <div class="bg-white rounded-[32px] shadow-md border border-gray-100 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col">
+                            
+                            <div class="relative w-full h-52 rounded-[24px] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800" class="w-full h-full object-cover">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent to-[50%]"></div>
+                            </div>
+                            
+                            <div class="px-4 pt-2 pb-4 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-1">
+                                        <h3 class="font-bold font-petrona text-2xl text-[#4B2F2B]">Pastry Lorem</h3>
+                                        <span class="text-xs text-gray-400 italic">Stok: 1</span>
+                                    </div>
+                                    <p class="text-base font-semibold text-[#8C5A3C] mb-1">Rp. 25.000</p>
+                                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Classic Pastry</p>
+                                </div>
+                                
+                                <button class="w-full bg-[#8C5A3C] drop-shadow-[0_2px_3px_rgba(0,0,0,0.25)] text-white rounded-full py-2.5 text-sm font-bold shadow-md hover:bg-[#69433F] active:scale-95 transition-all duration-200">
+                                    Detail
+                                </button>
+                            </div>
+
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+    </section>
+
+    <footer class="bg-[#4B2E2B] text-white mt-16">
+        <div class="max-w-7xl mx-auto px-10 py-10">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="font-petrona font-bold text-3xl mb-3"><i>Kunjungi Dapur Kami</i></h3>
+                    <p class="text-sm text-gray-300">Datang dan rasakan aroma dari panggangan kue <br> langsung dari
+                        oven
+                        kami setiap hari.</p>
+                    <div class="mt-4 text-sm text-gray-300 leading-relaxed">
+                        <b>Alamat</b>: Jl. Rungkut Asri Tengah V No. 22<br>
+                        <b>Email</b>: pelanpelantapipastry@gmail.com<br>
+                        <b>WhatsApp</b>: 0858-4760-5587
+                    </div>
+                </div>
+                <div class="md:justify-self-end w-full md:w-[350px]">
+                    <h3
+                        class="font-petrona italic font-bold text-3xl text-[#C08552] mb-2 pb-2 border-b border-white/20">
+                        Jam Operasional
+                    </h3>
+
+                    <div class="space-y-2 mt-3 font-sans text-sm text-gray-300">
+                        <div class="flex justify-between items-center">
+                            <span>Senin-Jum'at</span>
+                            <span class="font-medium">08.00-20.00</span>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <span>Sabtu-Minggu</span>
+                            <span class="font-medium">06.30-16.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-4 text-center text-xs text-gray-400">
+                © 2026 Pelan-Pelan Tapi Pastry. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const dropdownBtn = document.getElementById('dropdownBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('hidden');
+        });
+        document.addEventListener('click', () => {
+            dropdownMenu.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
