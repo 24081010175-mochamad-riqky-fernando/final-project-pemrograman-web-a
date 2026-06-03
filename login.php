@@ -1,3 +1,14 @@
+<?php
+session_start();
+// jika admin sudah login lanjut ke dashboard admin
+if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+    header("location: admin/dashboard.php");
+    exit;
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -20,18 +31,34 @@
 
     <div class="bg-[#FFF8F0] w-full max-w-[500px] px-10 py-12 rounded-[51px] shadow-sm text-center">
         <h2 class="text-[32px] font-bold text-black mb-1">Masuk Akun</h2>
-        <p class="text-[15px] font-medium text-black mb-8 opacity-80">Masuk dulu, pilih pastry favoritmu</p>
+        <p class="text-[15px] font-medium text-black mb-8 opacity-80">Area Admin - Pelan-pelan Tapi Pastry</p>
         
-        <form action="#" method="POST">
+        <?php if (isset($_GET['pesan'])): ?>
+            <div class="mb-6 p-3 bg-amber-50 border border-amber-200 text-amber-800 text-sm rounded-xl text-center font-medium">
+                <?php 
+                    if ($_GET['pesan'] == "gagal") {
+                        echo "Username atau password salah!";
+                    } else if ($_GET['pesan'] == "belum_login") {
+                        echo "Akses ditolak! Anda harus login terlebih dahulu.";
+                    } else if ($_GET['pesan'] == "logout") {
+                        echo "Anda berhasil keluar dari sistem.";
+                    }
+                ?>
+            </div>
+        <?php endif; ?>
+
+        <form action="proses_login.php" method="POST">
             <div class="mb-4 relative">
-                <input type="text" 
+                <label for="username" class="block text-sm font-semibold text-pastry-dark mb-1">Username</label>
+                <input type="text" name="username" id="username"
                        placeholder="Username" 
                        required 
                        class="w-full px-6 py-3.5 text-sm bg-[#C08552] text-white rounded-[25px] border-none outline-none font-medium placeholder-white/80">
             </div>
             
             <div class="mb-5 relative flex items-center">
-                <input type="password" 
+                <label for="password" class="block text-sm font-semibold text-pastry-dark mb-1">Password</label>
+                <input type="password" name="password" 
                        id="password" 
                        placeholder="Kata Sandi" 
                        required 
@@ -39,16 +66,16 @@
                 <i class="fa-regular fa-eye-slash absolute right-5 text-black/70 cursor-pointer text-base" id="togglePassword"></i>
             </div>
             
-            <button type="submit" 
+            <button type="submit" name="login"
                     class="w-full py-3.5 bg-white text-black border border-gray-200/60 rounded-[25px] text-base font-bold shadow-sm transition duration-200 hover:bg-gray-50 active:scale-[0.99] cursor-pointer">
                 Masuk
             </button>
         </form>
         
         <div class="flex justify-end mt-6">
-            <a href="#" 
+            <a href="catalog.php" 
                class="inline-block px-8 py-2.5 bg-[#C08552] text-white rounded-[25px] text-[15px] font-medium no-underline shadow-sm transition duration-200 hover:bg-[#a67445]">
-                Kembali
+                Kembali Ke Katalog
             </a>
         </div>
     </div>
