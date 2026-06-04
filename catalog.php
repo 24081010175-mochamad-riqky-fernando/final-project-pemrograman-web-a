@@ -60,11 +60,13 @@ $result = mysqli_query($conn, $query);
                     Setiap potongan menyajikan kesegaran stroberi <br>alami yang berpadu dengan tekstur kue yang lembut. Mahakarya rasa yang siap memanjakan hari Anda.
                 </p>
 
-                <a href="/detail-produk"
-                    class="inline-block px-12 py-4 bg-[#8C5A3C] text-white text-xl font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:bg-[#a06e4e] hover:-translate-y-1 active:scale-95">
-                    Detail
+                <a href="#target-btn" 
+                class="inline-flex items-center justify-center w-auto bg-[#8C5A3C] hover:bg-[#724930] text-white font-poppins font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 active:scale-95 text-sm cursor-pointer">
+                    <span>Cari tahu lebih banyak</span>
                 </a>
             </div>
+
+            
         </div>
 
         <div class="absolute bottom-0 left-0 w-full translate-y-[80%] z-10">
@@ -80,14 +82,12 @@ $result = mysqli_query($conn, $query);
 
     <div class="wave-top"></div>
 
-    <section class="max-w-7xl mx-auto px-6 py-8">
+    <section id="target-btn" class="max-w-7xl mx-auto px-6 py-8">
 
         <div class="grid grid-cols-3 items-center mb-12 relative w-full">
 
-            <!-- Tombol Dropdown Utama -->
     <button id="dropdownBtn"
         class="border-2 border-[#8C5A3C] rounded-2xl px-6 py-2.5 bg-transparent text-sm font-medium text-[#4B2F2B] flex items-center justify-between gap-4 min-w-[180px] shadow-sm hover:bg-[#FFF8F0] transition-all duration-200 focus:outline-none">
-        <!-- Diubah menjadi dinamis agar teks tombolnya ikut berubah saat diklik -->
         <span id="selectedLabel"><?php echo htmlspecialchars($kategori_terpilih); ?></span>
         <svg class="w-4 h-4 text-[#8C5A3C] transition-transform duration-200" id="dropdownArrow" fill="none"
             stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +102,6 @@ $result = mysqli_query($conn, $query);
 
         <ul class="space-y-1">
 
-            <!-- Semua Produk -->
             <li class="dropdown-item flex items-center justify-between bg-[#FFF8F0] text-[#4B2F2B] font-semibold px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all hover:opacity-90"
                 data-value="Semua Produk">
                 <a href="catalog.php?kategori=Semua+Produk" class="flex items-center justify-between w-full">
@@ -113,7 +112,6 @@ $result = mysqli_query($conn, $query);
                 </a>
             </li>
 
-            <!-- Croissant dan Danish (Menggunakan %20 agar dibaca spasi oleh MySQL) -->
             <li class="dropdown-item flex items-center justify-between bg-[#FFF8F0] text-[#4B2F2B] font-semibold px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all hover:opacity-90"
                 data-value="Croissant dan Danish">
                 <a href="catalog.php?kategori=Croissant%20dan%20Danish" class="flex items-center justify-between w-full">
@@ -124,7 +122,6 @@ $result = mysqli_query($conn, $query);
                 </a>
             </li>
 
-            <!-- Cakes -->
             <li class="dropdown-item flex items-center justify-between bg-[#FFF8F0] text-[#4B2F2B] font-semibold px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all hover:opacity-90"
                 data-value="Cakes">
                 <a href="catalog.php?kategori=Cakes" class="flex items-center justify-between w-full">
@@ -135,7 +132,6 @@ $result = mysqli_query($conn, $query);
                 </a>
             </li>
 
-            <!-- Soft Cookies (Menggunakan %20 agar aman) -->
             <li class="dropdown-item flex items-center justify-between bg-[#FFF8F0] text-[#4B2F2B] font-semibold px-4 py-2.5 rounded-xl cursor-pointer text-sm transition-all hover:opacity-90"
                 data-value="Soft Cookies">
                 <a href="catalog.php?kategori=Soft%20Cookies" class="flex items-center justify-between w-full">
@@ -190,8 +186,15 @@ $result = mysqli_query($conn, $query);
                                 Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?>
                             </span>
                         </div>
-                        <button class="w-full bg-[#8C5A3C] drop-shadow-[0_2px_3px_rgba(0,0,0,0.25)] text-white rounded-full py-2.5 text-sm font-bold shadow-md hover:bg-[#69433F] active:scale-95 transition-all duration-200">
-                                    Detail
+                        <button onclick="openProductModal(this)" 
+                                data-nama="<?php echo htmlspecialchars($row['nama_produk']); ?>"
+                                data-foto="assets/product/<?php echo $row['foto_produk']; ?>"
+                                data-kategori="<?php echo htmlspecialchars($row['nama_kategori']); ?>"
+                                data-status="<?php echo $row['status_po']; ?>"
+                                data-harga="Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?>"
+                                data-stok="<?php echo $row['stok']; ?>"
+                                class="w-full bg-[#8C5A3C] drop-shadow-[0_2px_3px_rgba(0,0,0,0.25)] text-white rounded-full py-2.5 text-sm font-bold shadow-md hover:bg-[#69433F] active:scale-95 transition-all duration-200 cursor-pointer">
+                            Detail
                         </button>
                     </div>
                 </div>
@@ -306,6 +309,62 @@ $result = mysqli_query($conn, $query);
 </script>
 <?php endif; ?>
 </body>
+
+<?php include 'product_card.php'; ?>
+
+<script>
+    const productModal = document.getElementById('productModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalNama = document.getElementById('modalNama');
+    const modalKategori = document.getElementById('modalKategori');
+    const modalStatus = document.getElementById('modalStatus');
+    const modalHarga = document.getElementById('modalHarga');
+    const modalStok = document.getElementById('modalStok');
+
+    function openProductModal(button) {
+    // Tarik data atribut
+    const nama = button.getAttribute('data-nama');
+    const foto = button.getAttribute('data-foto');
+    const kategori = button.getAttribute('data-kategori');
+    const status = button.getAttribute('data-status');
+    const harga = button.getAttribute('data-harga');
+    const stok = button.getAttribute('data-stok');
+
+    // Suntik data ke modal
+    document.getElementById('modalNama').innerText = nama;
+    document.getElementById('modalImg').src = foto;
+    document.getElementById('modalImg').alt = nama;
+    document.getElementById('modalKategori').innerText = kategori;
+    document.getElementById('modalHarga').innerText = harga; // <--- Mengisi Harga
+    document.getElementById('modalStok').innerText = stok;   // <--- Mengisi Stok
+    document.getElementById('modalStatus').innerText = status;
+
+    // Atur warna teks status background melengkung bulat agar estetik sesuai desain card
+    if (status === 'Ready') {
+        document.getElementById('modalStatus').className = "text-[14px] font-poppins font-medium italic text-green-600 mb-2";
+    } else {
+        document.getElementById('modalStatus').className = "text-[14px] font-poppins font-medium italic text-amber-600 mb-3";
+    }
+
+    // Tampilkan overlay modal
+    document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+        document.getElementById('productModal').classList.add('hidden');
+    }
+
+    // Tutup otomatis jika klik area blur luar card
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('productModal');
+        if (event.target == modal) {
+            closeProductModal();
+        }
+});
+</script>
+
+
+
 
 <?php
 include 'footer.php';
