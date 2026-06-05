@@ -96,7 +96,7 @@ $data_kategori = mysqli_fetch_assoc($query_kategori);
 
         <div class="flex items-center space-x-4">
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                <a href="admin/logout.php" 
+                <a href="logout.php" 
                     class="bg-[#4B2F2B] text-sm text-white px-3 py-1.5 rounded-xl font-medium flex items-center gap-2 hover:bg-[#392421] transition-all shadow-lg hover:shadow-xl active:scale-98 group">Logout</a>
             <?php else: ?>
                 <div onclick="openLoginModal()" 
@@ -167,7 +167,7 @@ $data_kategori = mysqli_fetch_assoc($query_kategori);
         <label class="block text-xs font-semibold text-brown-600 mb-1">Status Ketersediaan</label>
         <select id="input_status" name="status_po" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50">
           <option value="Ready">Ready</option>
-          <option value="Pre-Order">Pre-Order</option>
+          <option value="PO">Pre-Order</option>
         </select>
       </div>
 
@@ -344,7 +344,7 @@ $data_kategori = mysqli_fetch_assoc($query_kategori);
         <label class="block text-xs font-semibold text-brown-600 mb-1">Status Ketersediaan</label>
         <select name="status_po" id="inputEditStatus" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50">
           <option value="Ready">Ready</option>
-          <option value="Pre-Order">Pre-Order</option>
+          <option value="PO">Pre-Order</option>
         </select>
       </div>
 
