@@ -1,16 +1,12 @@
 <?php
-// proses_login.php
-
-// Memulai session PHP
 session_start();
-
 // Panggil file koneksi database
 require_once 'config/koneksi.php';
 
 // Cek apakah tombol login ditekan
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    // Ambil data inputan dan bersihkan dari karakter berbahaya
+    // Ambil data inputan
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
 
@@ -35,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Jika username salah atau password tidak cocok, tendang balik ke login.php
+    // Jika username salah atau password tidak cocok, balik ke login page
     header("Location: index.php?pesan=gagal");
     exit;
 } else {

@@ -2,7 +2,7 @@
 // admin/hapus_produk.php
 session_start();
 
-// SATPAM: Pastikan hanya admin sah yang bisa menghapus
+// hanya admin sah yang bisa menghapus
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php?pesan=belum_login");
     exit;
@@ -11,7 +11,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 // Panggil file koneksi database
 require_once '../config/koneksi.php';
 
-// Tangkap id_produk yang dikirim lewat URL tombol hapus (di file admin/index.php)
+// Tangkap id_produk yang dikirim lewat URL tombol hapus
 if (isset($_GET['id'])) {
     $id_produk = $_GET['id'];
 
@@ -28,11 +28,11 @@ if (isset($_GET['id'])) {
 
         // 2. Cek apakah file fotonya beneran ada di folder harddisk, lalu hapus
         if (file_exists($path_foto)) {
-            unlink($path_foto); // Ini fungsi PHP untuk menghapus file fisik di server
+            unlink($path_foto);
         }
     }
 
-    // 3. Setelah filenya terhapus dari folder, baru hapus data barisnya di MySQL
+    // 3. hapus data barisnya di MySQL
     $query_delete = "DELETE FROM tabel_produk WHERE id_produk = '$id_produk'";
     $execute_delete = mysqli_query($conn, $query_delete);
 

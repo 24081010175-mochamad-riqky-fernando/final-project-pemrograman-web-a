@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+< lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -38,36 +38,23 @@
                             700: '#5a3010',
                             800: '#3d1f09',
                             900: '#2a1505',
+                            }, 'pastry-brown': {
+                            DEFAULT: '#8C5A3C', // Warna cokelat teks/judul
+                            dark: '#4B2F2B',    // Warna cokelat tua komponen teks kanan & tombol
                             },
+                            'pastry-cream': '#FFF8F0',  // Warna krem latar belakang kartu sesuai gambar
                     }
                 }    
             } 
         }
     </script>
 
-        <script>
-        // Konfigurasi Tailwind untuk mendaftarkan Petrona dan Poppins
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'pastry-brown': {
-                            DEFAULT: '#8C5A3C', // Warna cokelat teks/judul
-                            dark: '#4B2F2B',    // Warna cokelat tua komponen teks kanan & tombol
-                        },
-                        'pastry-cream': '#FFF8F0',  // Warna krem latar belakang kartu sesuai gambar
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        /* Memaksa bentuk gambar di tengah menyerupai kapsul/stadion oval sempurna */
         .stadium-clip {
             clip-path: ellipse(50% 50% at 50% 50%);
         }
-         body { font-family: 'Nunito', sans-serif; }
+
+        body { font-family: 'Nunito', sans-serif; }
         .modal-backdrop { backdrop-filter: blur(2px); }
         .product-row { transition: background 0.15s; }
         .product-row:hover { background: #fdf6ee; }

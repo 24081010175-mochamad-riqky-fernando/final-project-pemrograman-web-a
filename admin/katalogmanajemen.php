@@ -2,7 +2,7 @@
 // admin/dashboard.php
 session_start();
 
-// KODE SATPAM: Jika tidak ada session login atau statusnya bukan admin, tendang keluar!
+// jika bukan admin tidak boleh masuk
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php?pesan=belum_login");
     exit;
@@ -10,14 +10,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 // Panggil koneksi untuk mengambil ringkasan data data dummy
 require_once '../config/koneksi.php';
-
-// Ambil total produk untuk statistik di dashboard
-$query_produk = mysqli_query($conn, "SELECT COUNT(*) as total FROM tabel_produk");
-$data_produk = mysqli_fetch_assoc($query_produk);
-
-// Ambil total kategori
-$query_kategori = mysqli_query($conn, "SELECT COUNT(*) as total FROM tabel_kategori");
-$data_kategori = mysqli_fetch_assoc($query_kategori);
 ?>
 
 
@@ -123,69 +115,68 @@ $data_kategori = mysqli_fetch_assoc($query_kategori);
 
 
   <!-- ========== FORM TAMBAH (State 2) ========== -->
-<div id="formTambah" class="hidden animate-slideDown mb-5">
-  <!-- Bungkus dengan tag form dan WAJIB sertakan enctype untuk upload file/gambar -->
-  <form action="proses_tambah.php" method="POST" enctype="multipart/form-data" class="bg-white rounded-2xl border border-brown-200 shadow-sm p-5">
-    <p class="font-bold text-brown-700 text-sm mb-4 tracking-wide">FORM DATA PRODUK BARU</p>
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
-      <!-- 1. Nama Produk -->
-      <div>
-        <label class="block text-xs font-semibold text-brown-600 mb-1">Nama Produk</label>
-        <input name="nama_produk" type="text" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50" placeholder="Contoh: Croissant Coklat" />
-      </div>
+  <div id="formTambah" class="hidden animate-slideDown mb-5">
+    <form action="proses_tambah.php" method="POST" enctype="multipart/form-data" class="bg-white rounded-2xl border border-brown-200 shadow-sm p-5">
+      <p class="font-bold text-brown-700 text-sm mb-4 tracking-wide">FORM DATA PRODUK BARU</p>
       
-      <!-- 2. Stok -->
-      <div>
-        <label class="block text-xs font-semibold text-brown-600 mb-1">Stok</label>
-        <input name="stok" type="number" min="0" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50" placeholder="Jumlah stok" />
-      </div>
-      
-      <!-- 3. Harga -->
-      <div>
-        <label class="block text-xs font-semibold text-brown-600 mb-1">Harga (Angka Saja)</label>
-        <input name="harga" type="number" min="0" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50" placeholder="Contoh: 25000" />
-      </div>
-      
-      <!-- 4. Kategori (Ambil dinamis dari database agar sinkron dengan id_kategori) -->
-      <div>
-        <label class="block text-xs font-semibold text-brown-600 mb-1">Kategori</label>
-        <select id="id_kategori" name="id_kategori" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50">
-          <option value="">-- Pilih Kategori --</option>
-          <?php 
-          // Mengambil data kategori langsung dari MySQL
-          $query_kat_form = mysqli_query($conn, "SELECT * FROM tabel_kategori");
-          while($kat = mysqli_fetch_assoc($query_kat_form)) {
-              echo "<option value='".$kat['id_kategori']."'>".$kat['nama_kategori']."</option>";
-          }
-          ?>
-        </select>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+        <!-- 1. Nama Produk -->
+        <div>
+          <label class="block text-xs font-semibold text-brown-600 mb-1">Nama Produk</label>
+          <input name="nama_produk" type="text" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50" placeholder="Contoh: Croissant Coklat" />
+        </div>
+        
+        <!-- 2. Stok -->
+        <div>
+          <label class="block text-xs font-semibold text-brown-600 mb-1">Stok</label>
+          <input name="stok" type="number" min="0" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50" placeholder="Jumlah stok" />
+        </div>
+        
+        <!-- 3. Harga -->
+        <div>
+          <label class="block text-xs font-semibold text-brown-600 mb-1">Harga (Angka Saja)</label>
+          <input name="harga" type="number" min="0" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50" placeholder="Contoh: 25000" />
+        </div>
+        
+        <!-- 4. Kategori (Ambil dinamis dari database agar sinkron dengan id_kategori) -->
+        <div>
+          <label class="block text-xs font-semibold text-brown-600 mb-1">Kategori</label>
+          <select id="id_kategori" name="id_kategori" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50">
+            <option value="">-- Pilih Kategori --</option>
+            <?php 
+            // Mengambil data kategori langsung dari MySQL
+            $query_kat_form = mysqli_query($conn, "SELECT * FROM tabel_kategori");
+            while($kat = mysqli_fetch_assoc($query_kat_form)) {
+                echo "<option value='".$kat['id_kategori']."'>".$kat['nama_kategori']."</option>";
+            }
+            ?>
+          </select>
+        </div>
+
+        <!-- 5. Status PO -->
+        <div>
+          <label class="block text-xs font-semibold text-brown-600 mb-1">Status Ketersediaan</label>
+          <select id="input_status" name="status_po" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50">
+            <option value="Ready">Ready</option>
+            <option value="PO">Pre-Order</option>
+          </select>
+        </div>
+
+        <!-- 6. Upload Foto Produk (Penting untuk backend $_FILES) -->
+        <div>
+          <label class="block text-xs font-semibold text-brown-600 mb-1">Foto Produk</label>
+          <input name="foto_produk" type="file" required class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brown-100 file:text-brown-700 hover:file:bg-brown-200" />
+        </div>
       </div>
 
-      <!-- 5. Status PO -->
-      <div>
-        <label class="block text-xs font-semibold text-brown-600 mb-1">Status Ketersediaan</label>
-        <select id="input_status" name="status_po" required class="w-full border border-brown-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brown-400 bg-brown-50">
-          <option value="Ready">Ready</option>
-          <option value="PO">Pre-Order</option>
-        </select>
+      <div class="mt-4 flex justify-end gap-3">
+        <!-- Tombol tipe button biasa agar tidak men-submit form saat cancel -->
+        <button type="button" onclick="toggleFormTambah()" class="px-4 py-2 rounded-lg border border-brown-300 text-brown-600 text-sm font-semibold hover:bg-brown-100 transition">Batal</button>
+        <!-- Tombol submit asli untuk mengirim data ke proses_tambah.php -->
+        <button type="submit" name="tambah" class="px-5 py-2 rounded-lg bg-brown-500 text-white text-sm font-bold hover:bg-brown-600 transition shadow">Simpan Produk</button>
       </div>
-
-      <!-- 6. Upload Foto Produk (Penting untuk backend $_FILES) -->
-      <div>
-        <label class="block text-xs font-semibold text-brown-600 mb-1">Foto Produk</label>
-        <input name="foto_produk" type="file" required class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brown-100 file:text-brown-700 hover:file:bg-brown-200" />
-      </div>
-    </div>
-
-    <div class="mt-4 flex justify-end gap-3">
-      <!-- Tombol tipe button biasa agar tidak men-submit form saat cancel -->
-      <button type="button" onclick="toggleFormTambah()" class="px-4 py-2 rounded-lg border border-brown-300 text-brown-600 text-sm font-semibold hover:bg-brown-100 transition">Batal</button>
-      <!-- Tombol submit asli untuk mengirim data ke proses_tambah.php -->
-      <button type="submit" name="tambah" class="px-5 py-2 rounded-lg bg-brown-500 text-white text-sm font-bold hover:bg-brown-600 transition shadow">Simpan Produk</button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 
     <!-- ========== TABEL PRODUK (State 1 / 5) ========== -->
 <div>

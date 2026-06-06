@@ -1,8 +1,7 @@
 <?php
-// admin/proses_edit.php
 session_start();
 
-// SATPAM: Pastikan yang akses sudah login admin
+// akses sudah login admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php?pesan=belum_login");
     exit;
@@ -20,9 +19,7 @@ if (isset($_POST['edit_produk'])) {
     $stok         = $_POST['stok'];
     $status_po    = $_POST['status_po'];
 
-    // ==========================================
-    // PROSES VALIDASI INPUT (DOKUMEN SRS)
-    // ==========================================
+    // PROSES VALIDASI INPUT (DOKUMEN SRS) 
     if ($harga < 0) {
         header("Location: katalogmanajemen.php?id=$id_produk&error=harga_minus");
         exit;
@@ -78,9 +75,7 @@ if (isset($_POST['edit_produk'])) {
         $nama_foto_baru = $foto_lama;
     }
 
-    // ==========================================
     // UPDATE DATA KE DATABASE MYSQL
-    // ==========================================
     $query_update = "UPDATE tabel_produk SET 
                         id_kategori = '$id_kategori', 
                         nama_produk = '$nama_produk', 

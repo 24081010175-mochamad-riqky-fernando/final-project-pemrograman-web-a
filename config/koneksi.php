@@ -1,5 +1,4 @@
 <?php
-// cofig/koneksi.php
 
 $host = "localhost";
 $user = "root";
@@ -15,4 +14,3 @@ if (!$conn){
 }
 ?>
 
-<!-- udah bisa connect -->
